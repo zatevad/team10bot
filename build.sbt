@@ -9,7 +9,7 @@ val projectMainClass = Some("Main")
 
 scalaVersion := "2.11.11"
 
-name := "davebot"
+name := "team10bot"
 
 organization := "com.macroservices"
 
@@ -42,7 +42,7 @@ javaOptions in Test ++= Seq("-Dconfig.file=src/test/resources/application.conf")
 
 mainClass in run in Compile := projectMainClass
 
-assemblyJarName in assembly := "davebot.jar"
+assemblyJarName in assembly := "team10bot.jar"
 
 //assemblySettings
 
