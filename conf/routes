@@ -1,0 +1,6 @@
+GET     /move                       @com.macroservices.controllers.MoveController.move
+POST    /move                       @com.macroservices.controllers.MoveController.lastOpponentMove
+
+POST    /start                      @com.macroservices.controllers.StartController.start
+
+

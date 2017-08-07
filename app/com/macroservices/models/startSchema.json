@@ -1,0 +1,18 @@
+{
+  "opponentName": {
+    "description": "Name of the bot you're playing against",
+    "type": "string"
+  },
+  "pointsToWin": {
+    "description": "Total points needed to win the match",
+    "type": "string"
+  },
+  "maxRounds": {
+    "description": "Maximum number of rounds before the match is a draw",
+    "type": "string"
+  },
+  "dynamiteCount": {
+    "description": "Number of dynamite you can throw. Attempts to throw more than this number with throw a waterbomb inst",
+    "type": "string"
+  }
+}
