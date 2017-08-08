@@ -22,7 +22,9 @@ class MoveController @Inject()(db: Database) extends Controller {
     //Determine best item to use
     val bestItem: String = analyser.getBestGuess
     println(s"MoveController/move = ${bestItem}")
-    analyser.saveOurMove(bestItem)
+    //How do we tell who the opponent is? We may have more than one war going on
+    val warId = 1
+    analyser.saveOurMove(bestItem, warId)
     Ok(Json.toJson(bestItem))
   }
 
@@ -36,7 +38,9 @@ class MoveController @Inject()(db: Database) extends Controller {
         },
         (result: LastMoveRequest) => {
           println(s"MoveController/lastOpponentMove = ${result}")
-          analyser.saveLastOpponentMove(result)
+          //How do we tell who the opponent is? We may have more than one war going on
+          val warId = 1
+          analyser.saveLastOpponentMove(result, warId)
           Future.successful(Ok)
         }
       )

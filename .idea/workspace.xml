@@ -2,10 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f80e8f7d-9751-4523-b913-62ac2eb8703f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Procfile" afterPath="$PROJECT_DIR$/Procfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.sbt" afterPath="$PROJECT_DIR$/build.sbt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/AppBuild.scala" afterPath="$PROJECT_DIR$/project/AppBuild.scala" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/root-build.iml" afterPath="$PROJECT_DIR$/.idea/modules/root-build.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules/root.iml" afterPath="$PROJECT_DIR$/.idea/modules/root.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala" afterPath="$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/com/macroservices/models/Battle.scala" afterPath="$PROJECT_DIR$/app/com/macroservices/models/Battle.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala" afterPath="$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/com/macroservices/service/Storage.scala" afterPath="$PROJECT_DIR$/app/com/macroservices/service/Storage.scala" />
     </list>
     <ignored path="$PROJECT_DIR$/target/resolution-cache/" />
     <ignored path="$PROJECT_DIR$/target/streams/" />
@@ -28,8 +32,8 @@
       <file leaf-file-name="MoveController.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="24" />
+            <state relative-caret-position="630">
+              <caret line="42" column="30" lean-forward="false" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
               <folding>
                 <element signature="e#39#78#0" expanded="true" />
               </folding>
@@ -37,43 +41,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="routes" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/conf/routes">
+      <file leaf-file-name="Battle.scala" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/com/macroservices/models/Battle.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="105">
+              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="startSchema.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/com/macroservices/models/startSchema.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="15" lean-forward="false" selection-start-line="1" selection-start-column="3" selection-end-line="1" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Storage.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Storage.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="194" column="6" lean-forward="false" selection-start-line="194" selection-start-column="6" selection-end-line="194" selection-end-column="6" />
-              <folding>
-                <element signature="e#35#61#0" expanded="true" />
-                <element signature="e#389#838#0" expanded="false" />
-                <element signature="e#842#1481#0" expanded="false" />
-                <element signature="e#1485#1902#0" expanded="false" />
-                <element signature="e#1906#2306#0" expanded="false" />
-                <element signature="e#2620#3200#0" expanded="false" />
-                <element signature="e#3204#3961#0" expanded="false" />
-                <element signature="e#3965#4645#0" expanded="false" />
-                <element signature="e#4649#5002#0" expanded="false" />
-                <element signature="e#5006#5499#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -81,8 +54,8 @@
       <file leaf-file-name="Analyser.scala" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="367">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="600">
+              <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
               <folding>
                 <element signature="e#35#61#0" expanded="true" />
               </folding>
@@ -90,22 +63,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Procfile" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Procfile">
+      <file leaf-file-name="Storage.scala" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Storage.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartRequest.scala" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/com/macroservices/models/StartRequest.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="82" lean-forward="false" selection-start-line="7" selection-start-column="82" selection-end-line="7" selection-end-column="82" />
-              <folding />
+            <state relative-caret-position="561">
+              <caret line="79" column="40" lean-forward="false" selection-start-line="79" selection-start-column="40" selection-end-line="79" selection-end-column="40" />
+              <folding>
+                <element signature="e#35#61#0" expanded="true" />
+                <element signature="e#1034#1673#0" expanded="false" />
+                <element signature="e#1677#2138#0" expanded="false" />
+                <element signature="e#2142#2581#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -130,21 +98,21 @@
       <list>
         <option value="$PROJECT_DIR$/app/com/macroservices/service/RPSDW.scala" />
         <option value="$PROJECT_DIR$/app/com/macroservices/utils/Initialiser.scala" />
-        <option value="$PROJECT_DIR$/app/com/macroservices/models/Battle.scala" />
         <option value="$PROJECT_DIR$/conf/routes" />
         <option value="$PROJECT_DIR$/app/com/macroservices/controllers/StartController.scala" />
-        <option value="$PROJECT_DIR$/app/com/macroservices/service/Storage.scala" />
         <option value="$PROJECT_DIR$/app/com/macroservices/connectors/RefereeConnector.scala" />
-        <option value="$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala" />
-        <option value="$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala" />
         <option value="$PROJECT_DIR$/app/com/macroservices/models/StartRequest.scala" />
         <option value="$PROJECT_DIR$/Procfile" />
+        <option value="$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala" />
+        <option value="$PROJECT_DIR$/app/com/macroservices/models/Battle.scala" />
+        <option value="$PROJECT_DIR$/app/com/macroservices/service/Storage.scala" />
+        <option value="$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1479" />
-    <option name="y" value="-13" />
+    <option name="x" value="731" />
+    <option name="y" value="-1057" />
     <option name="width" value="1762" />
     <option name="height" value="987" />
   </component>
@@ -164,38 +132,101 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-              <item name="davebot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="team10bot" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="davebot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="team10bot" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="davebot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="team10bot" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="macroservices" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="davebot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="MoveController" type="ce8f04f3:TypeDefinitionNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+              <item name="StartController" type="ce8f04f3:TypeDefinitionNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="models" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="Analyser.scala" type="6117b065:FileNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="Analyser.scala" type="6117b065:FileNode" />
+              <item name="Analyser" type="ce8f04f3:TypeDefinitionNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="macroservices" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="Storage" type="ce8f04f3:TypeDefinitionNode" />
+            </path>
+            <path>
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="team10bot" type="462c0819:PsiDirectoryNode" />
               <item name="conf" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="davebot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="team10bot" type="462c0819:PsiDirectoryNode" />
               <item name="project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="davebot" type="b2602c69:ProjectViewProjectNode" />
+              <item name="team10bot" type="b2602c69:ProjectViewProjectNode" />
               <item name="team10bot" type="462c0819:PsiDirectoryNode" />
               <item name="target" type="462c0819:PsiDirectoryNode" />
             </path>
@@ -203,8 +234,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -622,13 +652,13 @@
     </configuration>
   </component>
   <component name="SbtLocalSettings">
-    <option name="lastUpdateTimestamp" value="1502105304576" />
+    <option name="lastUpdateTimestamp" value="1502134143193" />
     <option name="availableProjects">
       <map>
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="davebot" />
+              <option name="name" value="team10bot" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
@@ -687,7 +717,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1479" y="-13" width="1762" height="987" extended-state="0" />
+    <frame x="731" y="-1057" width="1762" height="987" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="JSON Formatter" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -703,9 +734,8 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23269013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23269013" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="sbt-shell-toolwindow" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32847533" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -721,6 +751,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36579275" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -734,6 +765,47 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="30" lean-forward="false" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+          <folding>
+            <element signature="e#39#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Storage.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1665">
+          <caret line="153" column="47" lean-forward="true" selection-start-line="153" selection-start-column="47" selection-end-line="153" selection-end-column="47" />
+          <folding>
+            <element signature="e#35#61#0" expanded="true" />
+            <element signature="e#1034#1673#0" expanded="false" />
+            <element signature="e#1677#2138#0" expanded="false" />
+            <element signature="e#2142#2581#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/models/Battle.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+          <folding>
+            <element signature="e#35#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -750,15 +822,9 @@
           <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
           <folding>
             <element signature="e#35#61#0" expanded="true" />
-            <element signature="e#389#838#0" expanded="false" />
-            <element signature="e#842#1481#0" expanded="false" />
-            <element signature="e#1485#1902#0" expanded="false" />
-            <element signature="e#1906#2306#0" expanded="false" />
-            <element signature="e#2620#3200#0" expanded="false" />
-            <element signature="e#3204#3961#0" expanded="false" />
-            <element signature="e#3965#4645#0" expanded="false" />
-            <element signature="e#4649#5002#0" expanded="false" />
-            <element signature="e#5006#5499#0" expanded="false" />
+            <element signature="e#1034#1673#0" expanded="false" />
+            <element signature="e#1677#2138#0" expanded="false" />
+            <element signature="e#2142#2581#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -813,15 +879,9 @@
           <caret line="15" column="37" lean-forward="false" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
           <folding>
             <element signature="e#35#61#0" expanded="true" />
-            <element signature="e#389#838#0" expanded="false" />
-            <element signature="e#842#1481#0" expanded="false" />
-            <element signature="e#1485#1902#0" expanded="false" />
-            <element signature="e#1906#2306#0" expanded="false" />
-            <element signature="e#2620#3200#0" expanded="false" />
-            <element signature="e#3204#3961#0" expanded="false" />
-            <element signature="e#3965#4645#0" expanded="false" />
-            <element signature="e#4649#5002#0" expanded="false" />
-            <element signature="e#5006#5499#0" expanded="false" />
+            <element signature="e#1034#1673#0" expanded="false" />
+            <element signature="e#1677#2138#0" expanded="false" />
+            <element signature="e#2142#2581#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -876,15 +936,9 @@
           <caret line="72" column="6" lean-forward="false" selection-start-line="72" selection-start-column="6" selection-end-line="72" selection-end-column="6" />
           <folding>
             <element signature="e#35#61#0" expanded="true" />
-            <element signature="e#389#838#0" expanded="false" />
-            <element signature="e#842#1481#0" expanded="false" />
-            <element signature="e#1485#1902#0" expanded="false" />
-            <element signature="e#1906#2306#0" expanded="false" />
-            <element signature="e#2620#3200#0" expanded="false" />
-            <element signature="e#3204#3961#0" expanded="false" />
-            <element signature="e#3965#4645#0" expanded="false" />
-            <element signature="e#4649#5002#0" expanded="false" />
-            <element signature="e#5006#5499#0" expanded="false" />
+            <element signature="e#1034#1673#0" expanded="false" />
+            <element signature="e#1677#2138#0" expanded="false" />
+            <element signature="e#2142#2581#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -973,7 +1027,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -986,19 +1039,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/.name">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="7" lean-forward="false" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/.name" />
     <entry file="file://$PROJECT_DIR$/target/scala-2.11/routes/main/router/Routes.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
           <caret line="29" column="74" lean-forward="false" selection-start-line="29" selection-start-column="74" selection-end-line="29" selection-end-column="74" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1012,56 +1057,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/com/macroservices/models/Battle.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="37" lean-forward="false" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/com/macroservices/connectors/RefereeConnector.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="27" column="22" lean-forward="false" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/connectors/RefereeConnector.scala" />
     <entry file="file://$PROJECT_DIR$/conf/routes">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Storage.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="194" column="6" lean-forward="false" selection-start-line="194" selection-start-column="6" selection-end-line="194" selection-end-column="6" />
-          <folding>
-            <element signature="e#35#61#0" expanded="true" />
-            <element signature="e#389#838#0" expanded="false" />
-            <element signature="e#842#1481#0" expanded="false" />
-            <element signature="e#1485#1902#0" expanded="false" />
-            <element signature="e#1906#2306#0" expanded="false" />
-            <element signature="e#2620#3200#0" expanded="false" />
-            <element signature="e#3204#3961#0" expanded="false" />
-            <element signature="e#3965#4645#0" expanded="false" />
-            <element signature="e#4649#5002#0" expanded="false" />
-            <element signature="e#5006#5499#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="22" column="24" lean-forward="false" selection-start-line="22" selection-start-column="8" selection-end-line="22" selection-end-column="24" />
-          <folding>
-            <element signature="e#39#78#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1081,21 +1081,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Procfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/models/Battle.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/controllers/MoveController.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="30" lean-forward="false" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+          <folding>
+            <element signature="e#39#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Analyser.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+        <state relative-caret-position="600">
+          <caret line="40" column="24" lean-forward="false" selection-start-line="40" selection-start-column="24" selection-end-line="40" selection-end-column="24" />
           <folding>
             <element signature="e#35#61#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Procfile">
+    <entry file="file://$PROJECT_DIR$/app/com/macroservices/service/Storage.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="561">
+          <caret line="79" column="40" lean-forward="false" selection-start-line="79" selection-start-column="40" selection-end-line="79" selection-end-column="40" />
+          <folding>
+            <element signature="e#35#61#0" expanded="true" />
+            <element signature="e#1034#1673#0" expanded="false" />
+            <element signature="e#1677#2138#0" expanded="false" />
+            <element signature="e#2142#2581#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

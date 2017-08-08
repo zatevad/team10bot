@@ -19,19 +19,27 @@ A Battle is an individual round
 
 */
 
-  def storeBattle(battle: Battle): Int = {
+  def storeOurMoveForBattle(myWeapon: String, warId: Int): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
       val rs = stmt.executeQuery("INSERT INTO Battles VALUES ("
-        + "opponentId = " + battle.opponentId + ","
-        + "opponentWeapon = " + battle.opponentWeapon + ","
-        + "myWeapon = " + battle.myWeapon + ","
-        + "result = " + battle.result +
+        + "warId = " + warId + ","
+        + "myWeapon = " + myWeapon +
         ") RETURNING id")
 
       rs.next();
       rs.getInt(1);
+    }
+  }
+
+  def storeTheirMoveForBattle(opponentWeapon: String, battleId: Int) = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeUpdate("UPDATE Battles SET "
+        + "opponentWeapon = " + opponentWeapon + " WHERE Battles.Id = " + battleId)
+
     }
   }
 
@@ -53,18 +61,19 @@ A Battle is an individual round
     }
   }
 
-  def decrementDynamiteCount(warId: Int) = {
+  def decrementDynamiteCount(warId: Int): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT dynamiteCountRemaining FROM wars WHERE wars.id = " + warId)
+      val rs = stmt.executeQuery("SELECT dynamiteCountRemaining FROM Wars WHERE Wars.id = " + warId)
 
       rs.next();
       val remainingToUpdate = rs.getInt(1) - 1;
 
-      stmt.executeUpdate("INSERT INTO Wars VALUES ("
+      stmt.executeUpdate("UPDATE Wars SET "
         + "dynamiteCountRemaining = " + remainingToUpdate +
-        ")")
+        " WHERE Wars.id = " + warId)
+      remainingToUpdate
     }
   }
 
@@ -77,9 +86,10 @@ A Battle is an individual round
       rs.next();
       val remainingToUpdate = rs.getInt(1) - 1;
 
-      stmt.executeUpdate("INSERT INTO Wars VALUES ("
+      stmt.executeUpdate("UPDATE Wars SET "
         + "roundsRemaining = " + remainingToUpdate +
-        ")")
+        " WHERE Wars.id = " + warId)
+      remainingToUpdate
     }
   }
 
@@ -117,24 +127,23 @@ A Battle is an individual round
     else list.head
   }
 
-  def retrieveBattlesByOpponent(opponentName: String): List[Battle] = {
+  def retrieveBattlesByWar(warId: Int): List[Battle] = {
 
     val battles = ListBuffer[Battle]()
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT * FROM Battles, Opponents WHERE Battles.opponentId = Opponents.opponentId" +
-        " AND opponentName = " + opponentName)
+      val rs = stmt.executeQuery("SELECT * FROM Battles, Wars WHERE Battles.warId = " + warId)
 
       while (rs.next) {
         val id = rs.getInt("id")
-        val opp = rs.getString("opponentName")
+        val war = rs.getInt("opponentName")
         val ow = rs.getString("opponentWeapon")
         val mw = rs.getString("myWeapon")
         val res = rs.getString("result")
         val ts = new DateTime(rs.getTimestamp("created"))
 
-        val battle = Battle(id, opp, ow, mw, res, ts)
+        val battle = Battle(id, war, ow, mw, res, Some(ts))
         battles += battle
       }
     }
@@ -147,17 +156,17 @@ A Battle is an individual round
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT * FROM Battles, Opponents WHERE Battles.opponentId = Opponents.opponentId")
+      val rs = stmt.executeQuery("SELECT * FROM Battles")
 
       while (rs.next) {
         val id = rs.getInt("id")
-        val opp = rs.getString("opponentId")
+        val war = rs.getInt("warId")
         val ow = rs.getString("opponentWeapon")
         val mw = rs.getString("myWeapon")
         val res = rs.getString("result")
         val ts = new DateTime(rs.getTimestamp("created"))
 
-        val battle = Battle(id, opp, ow, mw, res, ts)
+        val battle = Battle(id, war, ow, mw, res, Some(ts))
         battles += battle
       }
     }
@@ -198,11 +207,20 @@ A Battle is an individual round
 
       stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Battles" +
         " (id integer PRIMARY KEY DEFAULT nextval('serial'), " +
-        "opponentId varchar(40) NOT NULL, " +
+        "warId varchar(40) NOT NULL, " +
         "opponentWeapon varchar(10)" +
         "myWeapon varchar(10)" +
         "result varchar(10)" +
         "created timestamp DEFAULT NOW())")
+    }
+  }
+
+  //Table Clean up
+  def dropTables() ={
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      stmt.executeUpdate("DROP table Battles, Wars, Opponents")
     }
   }
 }
