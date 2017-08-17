@@ -1,51 +1,47 @@
 package com.macroservices.service
 
-import javax.inject.Inject
-
-import com.macroservices.models.{Battle, LastMoveRequest, StartRequest}
-import org.joda.time.{DateTime, LocalDate}
-import play.api.db._
+import com.macroservices.models.{LastMoveRequest, StartRequest}
+import org.joda.time.DateTime
+import play.api.db.Database
 
 import scala.util.Random
 
-class Analyser @Inject()(db: Database){
+class Analyser(db: Database) {
 
   val storage: Storage = new Storage(db)
+  private val nameToItem: Map[String, Item] = Map(
+    "rock" -> Rock,
+    "paper" -> Paper,
+    "scissors" -> Scissors,
+    "dynamite" -> Dynamite,
+    "waterbomb" -> WaterBomb)
 
-  def initialise(initialisationObject: StartRequest): Unit = {
-//    val dynamiteCount = initialisationObject.dynamiteCount
+  def initialise(initialisationObject: StartRequest): Int = {
     val opponentName = initialisationObject.opponentName
-//    val pointsToWin = initialisationObject.pointsToWin
-//    val maxRounds = initialisationObject.maxRounds
+
     //make sure tables exist
-    storage.createOpponentsTable
-    storage.createBattlesTable
-    storage.createWarsTable()
+    storage.createAllTables()
 
-    //save initialisation data
-    //see if we've played before
-    val opponentId = storage.storeAndOrRetrieveOpponentId(opponentName)
-    storage.storeInitialisation(opponentId, initialisationObject)
-
+    val warId = storage.startWar(initialisationObject)
+    warId
   }
 
-  def saveOurMove(bestItem: String, warId: Int): Unit = {
+  def saveOurMove(bestItem: String): Int = {
+    //Assumption that the referee is calling in order
+    val lastWarId: Int = storage.retrieveLastWar()
+    if (bestItem.equals("dynamite")) storage.decrementDynamiteCount(lastWarId)
 
-    if(bestItem.equals("dynamite")) storage.decrementDynamiteCount(warId)
-    //How do we keep in sync with last opponent move
-
-    val battleId: Int = storage.storeOurMoveForBattle(bestItem, warId)
+    storage.storeOurMoveForBattle(bestItem, lastWarId)
   }
 
-  def saveLastOpponentMove(result: LastMoveRequest, battleId: Int): Unit = {
-//update their last move
-    storage.storeTheirMoveForBattle(opponentWeapon = result.opponentLastMove,
-      battleId = battleId)
+  def saveLastOpponentMove(result: LastMoveRequest): Int = {
+
+    val lastBattleId: Int = storage.retrieveLastBattle()
+    storage.storeTheirMoveForBattle(opponentWeapon = result.opponentLastMove, battleId = lastBattleId)
   }
 
   def getBestGuess: String = {
     val decision = randomWeapon
-    println(s"Analyser = ${decision}")
     decision
   }
 
@@ -54,13 +50,6 @@ class Analyser @Inject()(db: Database){
     val index = Random.nextInt(nameToItem.size)
     nameToItem.keys.toIndexedSeq(index)
   }
-
-  private val nameToItem: Map[String, Item] = Map(
-    "rock" -> Rock,
-    "paper" -> Paper,
-    "scissors" -> Scissors,
-    "dynamite" -> Dynamite,
-    "waterbomb" -> WaterBomb)
 
 }
 

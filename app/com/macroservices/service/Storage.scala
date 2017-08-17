@@ -9,51 +9,60 @@ import play.api.db._
 import scala.collection.mutable.ListBuffer
 
 class Storage @Inject()(db: Database) {
-/* This code not finished yet
+  /* This code not finished yet
 
-We have opponents
+  We have opponents
 
-A war is a complete Game against an opponent
+  A war is a complete Game against an opponent
 
-A Battle is an individual round
+  A Battle is an individual round
 
-*/
+  */
 
   def storeOurMoveForBattle(myWeapon: String, warId: Int): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("INSERT INTO Battles VALUES ("
-        + "warId = " + warId + ","
-        + "myWeapon = " + myWeapon +
-        ") RETURNING id")
+      val rs = stmt.executeQuery("INSERT INTO battles (warId, myWeapon) VALUES (" +
+        +warId + ", '"
+        + myWeapon +
+        "') RETURNING id")
 
       rs.next();
       rs.getInt(1);
     }
   }
 
-  def storeTheirMoveForBattle(opponentWeapon: String, battleId: Int) = {
+  def storeTheirMoveForBattle(opponentWeapon: String, battleId: Int): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeUpdate("UPDATE Battles SET "
-        + "opponentWeapon = " + opponentWeapon + " WHERE Battles.Id = " + battleId)
+      val rs = stmt.executeUpdate("UPDATE battles SET "
+        + "opponentWeapon = '" + opponentWeapon + "' WHERE battles.Id = " + battleId)
 
     }
+    //return the battle Id for confimation
+    battleId
+  }
+
+  def startWar(startRequest: StartRequest): Int = {
+    val opponentId = storeOpponent(startRequest.opponentName)
+    storeInitialisation(opponentId, startRequest)
   }
 
   def storeInitialisation(opponentId: Int, startRequest: StartRequest): Int = {
+
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("INSERT INTO Wars VALUES ("
-        + "opponentId = " + opponentId + ","
-        + "pointsToWin = " + startRequest.pointsToWin + ","
-        + "maxRounds = " + startRequest.maxRounds + ","
-        + "roundsRemaining = " + startRequest.maxRounds + ","
-        + "dynamiteCount = " + startRequest.dynamiteCount + ","
-        + "dynamiteCountRemaining = " + startRequest.dynamiteCount +
+      val rs = stmt.executeQuery("INSERT INTO wars (opponentId, pointsToWin, maxRounds, roundsRemaining, " +
+        "dynamiteCount, dynamiteCountRemaining) VALUES ("
+        + opponentId + ","
+        + startRequest.pointsToWin + ","
+        + startRequest.maxRounds + ","
+        + startRequest.maxRounds + ","
+        + startRequest.dynamiteCount + ","
+        + startRequest.dynamiteCount +
         ") RETURNING id")
 
       rs.next();
@@ -61,23 +70,47 @@ A Battle is an individual round
     }
   }
 
+  def retrieveLastWar(): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT id FROM wars ORDER BY id DESC LIMIT 1")
+
+      rs.next();
+      rs.getInt(1);
+    }
+  }
+
+  def retrieveLastBattle(): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT id FROM battles ORDER BY id DESC LIMIT 1")
+
+      rs.next();
+      rs.getInt(1);
+    }
+  }
+
+  //return remaining dynamite
   def decrementDynamiteCount(warId: Int): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT dynamiteCountRemaining FROM Wars WHERE Wars.id = " + warId)
+      val rs = stmt.executeQuery("SELECT dynamiteCountRemaining FROM wars WHERE wars.id = " + warId)
 
       rs.next();
       val remainingToUpdate = rs.getInt(1) - 1;
 
-      stmt.executeUpdate("UPDATE Wars SET "
+      stmt.executeUpdate("UPDATE wars SET "
         + "dynamiteCountRemaining = " + remainingToUpdate +
-        " WHERE Wars.id = " + warId)
+        " WHERE wars.id = " + warId)
       remainingToUpdate
     }
   }
 
-  def decrementmMaxRounds(warId: Int) = {
+  //return remaining rounds
+  def decrementmMaxRounds(warId: Int): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
@@ -86,11 +119,32 @@ A Battle is an individual round
       rs.next();
       val remainingToUpdate = rs.getInt(1) - 1;
 
-      stmt.executeUpdate("UPDATE Wars SET "
+      stmt.executeUpdate("UPDATE wars SET "
         + "roundsRemaining = " + remainingToUpdate +
-        " WHERE Wars.id = " + warId)
+        " WHERE oars.id = " + warId)
       remainingToUpdate
     }
+  }
+
+  def storeAndOrRetrieveOpponentId(opponentName: String): Int = {
+
+    val opponentIds = ListBuffer[Int]()
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT * FROM opponents WHERE opponents.opponentName LIKE '" + opponentName + "%'")
+
+      while (rs.next) {
+        val opponentId = rs.getInt("id")
+
+        opponentIds += opponentId
+      }
+    }
+    val list = opponentIds.toList
+    if (list.isEmpty) {
+      storeOpponent(opponentName)
+    }
+    else list.head
   }
 
   private def storeOpponent(opponentName: String): Int = {
@@ -98,34 +152,15 @@ A Battle is an individual round
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("INSERT INTO Opponents VALUES ("
-        + "opponentName = " + opponentName  + ") RETURNING id")
+      val rs = stmt.executeQuery("INSERT INTO opponents (opponentName) VALUES ('"
+        + opponentName + "-" + uuid + "') RETURNING id")
 
       rs.next();
       rs.getInt(1);
     }
   }
 
-  def storeAndOrRetrieveOpponentId(opponentName: String): Int = {
-//Not good code
-    val opponentIds = ListBuffer[Int]()
-    db.withConnection { conn =>
-      val stmt = conn.createStatement
-
-      val rs = stmt.executeQuery("SELECT * FROM Opponents WHERE Opponents.opponentName = " + opponentName)
-
-      while (rs.next) {
-        val opponentId = rs.getInt("id")
-        opponentIds += opponentId
-      }
-    }
-    val list = opponentIds.toList
-    if(list.isEmpty) {
-      storeOpponent(opponentName)
-      storeAndOrRetrieveOpponentId(opponentName)
-    }
-    else list.head
-  }
+  def uuid(): String = java.util.UUID.randomUUID.toString
 
   def retrieveBattlesByWar(warId: Int): List[Battle] = {
 
@@ -133,7 +168,7 @@ A Battle is an individual round
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT * FROM Battles, Wars WHERE Battles.warId = " + warId)
+      val rs = stmt.executeQuery("SELECT * FROM battles, wars WHERE battles.warId = " + warId)
 
       while (rs.next) {
         val id = rs.getInt("id")
@@ -156,7 +191,7 @@ A Battle is an individual round
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT * FROM Battles")
+      val rs = stmt.executeQuery("SELECT * FROM battles")
 
       while (rs.next) {
         val id = rs.getInt("id")
@@ -174,53 +209,69 @@ A Battle is an individual round
   }
 
   //Table creation
-  def createOpponentsTable() = {
+  def createAllTables() = {
+    createOpponentsTable()
+    createWarsTable()
+    createBattlesTable()
+  }
+
+  private def createOpponentsTable() = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Opponents" +
-        " (id integer PRIMARY KEY DEFAULT nextval('serial'), " +
-        "opponentName varchar(40) NOT NULL, " +
+      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS opponents " +
+        "(id BIGSERIAL PRIMARY KEY , " +
+        "opponentName varchar(200) NOT NULL, " +
         "created timestamp DEFAULT NOW())")
     }
   }
 
-  def createWarsTable() = {
+  private def createWarsTable() = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Wars" +
-        " (id integer PRIMARY KEY DEFAULT nextval('serial'), " +
-        "opponentId integer NOT NULL, " +
-        "pointsToWin integer" +
-        "maxRounds integer" +
-        "roundsRemaining integer" +
-        "dynamiteCount integer" +
-        "dynamiteCountRemaining integer" +
+      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS wars " +
+        "(id BIGSERIAL PRIMARY KEY , " +
+        "opponentId bigint NOT NULL, " +
+        "pointsToWin integer, " +
+        "maxRounds integer, " +
+        "roundsRemaining integer, " +
+        "dynamiteCount integer, " +
+        "dynamiteCountRemaining integer, " +
         "created timestamp DEFAULT NOW())")
     }
   }
 
-  def createBattlesTable() = {
+  private def createBattlesTable() = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS Battles" +
-        " (id integer PRIMARY KEY DEFAULT nextval('serial'), " +
-        "warId varchar(40) NOT NULL, " +
-        "opponentWeapon varchar(10)" +
-        "myWeapon varchar(10)" +
-        "result varchar(10)" +
+      stmt.executeUpdate("CREATE TABLE IF NOT EXISTS battles " +
+        "(id BIGSERIAL PRIMARY KEY , " +
+        "warId bigint NOT NULL, " +
+        "opponentWeapon varchar(10), " +
+        "myWeapon varchar(10), " +
+        "result varchar(10), " +
         "created timestamp DEFAULT NOW())")
     }
   }
+
+  //utils
 
   //Table Clean up
-  def dropTables() ={
-    db.withConnection { conn =>
-      val stmt = conn.createStatement
+  def dropTables() = {
+    try {
+      db.withConnection { conn =>
+        val stmt = conn.createStatement
 
-      stmt.executeUpdate("DROP table Battles, Wars, Opponents")
+        stmt.executeUpdate("DROP table IF EXISTS battles")
+        stmt.executeUpdate("DROP table IF EXISTS wars")
+        stmt.executeUpdate("DROP table IF EXISTS opponents")
+      }
+    }
+    catch {
+      //do nothing
+      case e: Exception => Unit
     }
   }
 }

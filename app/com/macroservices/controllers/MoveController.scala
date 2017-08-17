@@ -15,17 +15,14 @@ import scala.concurrent.Future
 @Singleton
 class MoveController @Inject()(db: Database) extends Controller {
 
-  val analyser:Analyser = new Analyser(db)
+  val analyser: Analyser = new Analyser(db)
 
   //called by the referee to get our next move
   def move() = Action {
     //Determine best item to use
     val bestItem: String = analyser.getBestGuess
-    println(s"MoveController/move = ${bestItem}")
-    //How do we tell who the opponent is? We may have more than one war going on
-    val warId = 1
-    analyser.saveOurMove(bestItem, warId)
-    Ok(Json.toJson(bestItem))
+    analyser.saveOurMove(bestItem)
+    Ok(Json.toJson(bestItem.toUpperCase))
   }
 
   //called by the referee to inform us of the last move made by opponent
@@ -33,14 +30,10 @@ class MoveController @Inject()(db: Database) extends Controller {
     implicit request =>
       request.body.validate[LastMoveRequest].fold(
         (error: Seq[(JsPath, Seq[ValidationError])]) => {
-          println(error)
           Future.successful(BadRequest(JSONFactory.generateErrorJSON(play.api.http.Status.BAD_REQUEST, Left(error))))
         },
         (result: LastMoveRequest) => {
-          println(s"MoveController/lastOpponentMove = ${result}")
-          //How do we tell who the opponent is? We may have more than one war going on
-          val warId = 1
-          analyser.saveLastOpponentMove(result, warId)
+          analyser.saveLastOpponentMove(result)
           Future.successful(Ok)
         }
       )

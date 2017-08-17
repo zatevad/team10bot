@@ -4,8 +4,8 @@ import play.api.libs.json.Json
 
 
 case class StartRequest(opponentName: String,
-                        pointsToWin: Int,  //Is this is irrelevent - referee decides
-                        maxRounds: Int,  //Is this is irrelevent - referee decides
+                        pointsToWin: Int, //Is this is irrelevent - referee decides
+                        maxRounds: Int, //Is this is irrelevent - referee decides
                         dynamiteCount: Int) {
 
 }

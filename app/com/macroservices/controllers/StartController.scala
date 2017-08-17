@@ -13,18 +13,16 @@ import scala.concurrent.Future
 @Singleton
 class StartController @Inject()(db: Database) extends Controller {
 
-  val analyser:Analyser = new Analyser(db)
+  val analyser: Analyser = new Analyser(db)
 
   def start() = Action.async(parse.json) {
     implicit request =>
       request.body.validate[StartRequest].fold(
         error => {
-          println(error)
           Future.successful(BadRequest(JSONFactory.generateErrorJSON(play.api.http.Status.BAD_REQUEST, Left(error))))
         },
         result => {
-          println(s"StartController/start = ${result}")
-          analyser.initialise(result)
+          val newOppenentId: Int = analyser.initialise(result)
           Future.successful(Ok)
         }
       )
