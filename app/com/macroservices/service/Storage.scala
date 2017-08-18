@@ -33,12 +33,12 @@ class Storage @Inject()(db: Database) {
     }
   }
 
-  def storeTheirMoveForBattle(opponentWeapon: String, battleId: Int): Int = {
+  def storeTheirMoveForBattle(battleId: Int, opponentWeapon: String, result: String): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
       val rs = stmt.executeUpdate("UPDATE battles SET "
-        + "opponentWeapon = '" + opponentWeapon + "' WHERE battles.Id = " + battleId)
+        + "opponentWeapon = '" + opponentWeapon + "', result = '" + result + "' WHERE battles.Id = " + battleId)
 
     }
     //return the battle Id for confimation
@@ -65,30 +65,39 @@ class Storage @Inject()(db: Database) {
         + startRequest.dynamiteCount +
         ") RETURNING id")
 
-      rs.next();
-      rs.getInt(1);
+      rs.next()
+      rs.getInt(1)
     }
   }
+
 
   def retrieveLastWar(): Int = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT id FROM wars ORDER BY id DESC LIMIT 1")
+      val rs = stmt.executeQuery("SELECT * FROM wars ORDER BY id DESC LIMIT 1")
 
-      rs.next();
-      rs.getInt(1);
+      rs.next()
+      rs.getInt(1)
     }
   }
 
-  def retrieveLastBattle(): Int = {
+  def retrieveLastBattle(): Battle = {
     db.withConnection { conn =>
       val stmt = conn.createStatement
 
-      val rs = stmt.executeQuery("SELECT id FROM battles ORDER BY id DESC LIMIT 1")
+      val rs = stmt.executeQuery("SELECT * FROM battles ORDER BY id DESC LIMIT 1")
 
-      rs.next();
-      rs.getInt(1);
+      rs.next()
+        val id = rs.getInt("id")
+        val war = rs.getInt("warId")
+        val ow = rs.getString("opponentWeapon")
+        val mw = rs.getString("myWeapon")
+        val res = rs.getString("result")
+        val ts = new DateTime(rs.getTimestamp("created"))
+
+        Battle(id, war, ow, mw, res, Some(ts))
+
     }
   }
 
@@ -106,6 +115,39 @@ class Storage @Inject()(db: Database) {
         + "dynamiteCountRemaining = " + remainingToUpdate +
         " WHERE wars.id = " + warId)
       remainingToUpdate
+    }
+  }
+
+  def getDynamiteCount(warId: Int): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT dynamiteCountRemaining FROM wars WHERE wars.id = " + warId)
+
+      rs.next();
+      rs.getInt(1);
+    }
+  }
+
+  def getmaxRounds(warId: Int): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT maxrounds FROM wars WHERE wars.id = " + warId)
+
+      rs.next();
+      rs.getInt(1);
+    }
+  }
+
+  def getPointsToWin(warId: Int): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT pointstowin FROM wars WHERE wars.id = " + warId)
+
+      rs.next();
+      rs.getInt(1);
     }
   }
 
@@ -172,7 +214,7 @@ class Storage @Inject()(db: Database) {
 
       while (rs.next) {
         val id = rs.getInt("id")
-        val war = rs.getInt("opponentName")
+        val war = rs.getInt("warid")
         val ow = rs.getString("opponentWeapon")
         val mw = rs.getString("myWeapon")
         val res = rs.getString("result")
@@ -206,6 +248,34 @@ class Storage @Inject()(db: Database) {
       }
     }
     battles.toList
+  }
+
+  def getNumberWonInWar(warId: Int): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT count(*) FROM battles WHERE warid = " + warId + " AND result = 'Won'")
+      rs.next();
+      rs.getInt(1);
+    }
+  }
+  def getNumberLostInWar(warId: Int): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT count(*) FROM battles WHERE warid = " + warId + " AND result = 'Lost'")
+      rs.next();
+      rs.getInt(1);
+    }
+  }
+  def getNumberTiedInWar(warId: Int): Int = {
+    db.withConnection { conn =>
+      val stmt = conn.createStatement
+
+      val rs = stmt.executeQuery("SELECT count(*) FROM battles WHERE warid = " + warId + " AND result = 'Tied'")
+      rs.next();
+      rs.getInt(1);
+    }
   }
 
   //Table creation

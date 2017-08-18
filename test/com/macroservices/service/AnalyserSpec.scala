@@ -5,6 +5,7 @@ import com.macroservices.models.{LastMoveRequest, StartRequest}
 import org.scalatest.mockito.MockitoSugar
 import org.scalatestplus.play.PlaySpec
 import play.api.db.{Database, Databases}
+import org.mockito.Mockito._
 
 class AnalyserSpec extends PlaySpec
   with FakeBotApplication
@@ -24,8 +25,7 @@ class AnalyserSpec extends PlaySpec
     "initialise" in {
       SUT.storage.dropTables()
 
-      val start = StartRequest("opponent 1", 100, 500, 50)
-      SUT.initialise(start)
+      SUT.initialise(StartRequest("opponent 1", 100, 500, 50))
 
       val result = SUT.storage.retrieveLastWar()
       result mustBe 1
@@ -71,6 +71,24 @@ class AnalyserSpec extends PlaySpec
       val res = SUT.saveLastOpponentMove(LastMoveRequest("PAPER"))
       val result = SUT.storage.retrieveLastBattle()
       result mustBe 3
+    }
+
+//    "return dynamite if count greater than 0" in {
+//      SUT.storage.dropTables()
+//      val warId = SUT.initialise(StartRequest("opponent 1", 100, 500, 50))
+//      when(SUT.randomWeapon).thenReturn("dynamite")
+//
+//      val bestguess = SUT.getBestGuess
+//      bestguess mustBe "dynamite"
+//    }
+
+    "not return dynamite if count less than 0" in {
+      SUT.storage.dropTables()
+      val warId = SUT.initialise(StartRequest("opponent 1", 100, 500, 0))
+      when(SUT.randomWeapon).thenReturn("dynamite")
+
+      val bestguess = SUT.getBestGuess
+      bestguess must not be "dynamite"
     }
   }
 }

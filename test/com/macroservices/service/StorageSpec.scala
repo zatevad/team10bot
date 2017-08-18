@@ -49,6 +49,16 @@ class StorageSpec extends PlaySpec
       val result = SUT.startWar(start)
       result mustBe 1
     }
+
+    "decrement Dynamite Count by one" in {
+      SUT.dropTables()
+      SUT.createAllTables()
+      val start = StartRequest("opponent 1", 100, 500, 50)
+      val warId = SUT.startWar(start)
+      val dynamitecount = SUT.decrementDynamiteCount(warId)
+      dynamitecount mustBe 49
+    }
+
   }
 
 }

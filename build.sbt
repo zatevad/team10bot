@@ -75,7 +75,7 @@ libraryDependencies ++= Seq(
 // play.sbt.routes.RoutesKeys.routesImport += "com.example.binders._"
 
 
-javaOptions in Test ++= Seq("-Dconfig.file=src/test/resources/application.conf")
+//javaOptions in Test ++= Seq("-Dconfig.file=src/test/resources/application.conf")
 
 //mainClass in run in Compile := projectMainClass
 
